@@ -2,21 +2,17 @@
 
 import * as React from "react";
 import {
-  ArrowUpCircleIcon,
-  BarChartIcon,
   CameraIcon,
   ClipboardListIcon,
   DatabaseIcon,
   FileCodeIcon,
   FileIcon,
   FileTextIcon,
-  FolderIcon,
   HelpCircleIcon,
   LayoutDashboardIcon,
   ListIcon,
   SearchIcon,
   SettingsIcon,
-  UsersIcon,
 } from "lucide-react";
 
 import { NavSecondary } from "@/components/sidebar/nav-secondary";
@@ -26,9 +22,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
 
@@ -41,28 +34,13 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: LayoutDashboardIcon,
     },
     {
-      title: "Lifecycle",
-      url: "#",
+      title: "Todos",
+      url: "/todos",
       icon: ListIcon,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: BarChartIcon,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: FolderIcon,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: UsersIcon,
     },
   ],
   navClouds: [
