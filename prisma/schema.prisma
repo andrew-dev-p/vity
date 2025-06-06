@@ -15,6 +15,36 @@ model User {
   name  String
   image String
 
+  todos Todo[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum Status {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+model Todo {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+
+  priority    Priority
+  status      Status
+  completedAt DateTime?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
