@@ -39,7 +39,7 @@ model Todo {
   description String?
 
   priority    Priority
-  status      Status
+  status      Status    @default(TODO)
   completedAt DateTime?
 
   userId String
