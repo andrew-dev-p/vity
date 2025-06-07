@@ -1,15 +1,19 @@
-import { Priority } from "@/generated/prisma";
+import { todoSchema } from "@/features/todo/schema";
 import prisma from "@/lib/prisma";
+import { createClient } from "@/lib/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-
-const todoSchema = z.object({
-  title: z.string().min(1),
-  description: z.string().optional(),
-  priority: z.nativeEnum(Priority),
-});
 
 export async function POST(req: NextRequest) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const body = await req.json();
 
   const validatedFields = todoSchema.safeParse(body);
@@ -31,7 +35,7 @@ export async function POST(req: NextRequest) {
       title,
       description,
       priority,
-      userId: req.user.id,
+      userId: user.id,
     },
   });
 

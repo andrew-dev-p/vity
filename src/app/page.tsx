@@ -27,8 +27,6 @@ export default async function SignInPage() {
       return;
     }
 
-    console.log(data);
-
     if (data?.url) {
       redirect(data.url);
     }
